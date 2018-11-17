@@ -2,3 +2,5 @@
 **/obj
 **/*.csproj
 **/*.sln
+**/*.rar
+**/*.zip
