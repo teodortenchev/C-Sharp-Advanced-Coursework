@@ -25,13 +25,25 @@ namespace P4_OnlineRadio.Core
                     string artistName = args[0];
                     string songName = args[1];
                     string[] timeArgs = args[2].Split(":", StringSplitOptions.RemoveEmptyEntries);
-                    int minutes = int.Parse(timeArgs[0]);
-                    int seconds = int.Parse(timeArgs[1]);
+
+
+                    bool isMinutes = int.TryParse(timeArgs[0], out int minutes);
+                    bool isSeconds = int.TryParse(timeArgs[1], out int seconds);
+
+                    if (!isMinutes)
+                    {
+                        throw new InvalidSongLengthException();
+                    }
+
+                    if (!isSeconds)
+                    {
+                        throw new InvalidSongLengthException();
+                    }
 
                     Song song = new Song(artistName, songName, minutes, seconds);
                     repository.AddSong(song);
                 }
-                catch (InvalidSongException exception)
+                catch (FormatException exception)
                 {
                     Console.WriteLine(exception.Message);
                 }
