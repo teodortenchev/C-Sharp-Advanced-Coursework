@@ -1,12 +1,12 @@
-﻿using System;
-
+﻿using P4_OnlineRadio.Core;
 namespace P4_OnlineRadio
 {
     public class StartUp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Engine engine = new Engine();
+            engine.Run();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace P4_OnlineRadio.Exceptions
 {
-    class InvalidSongException : FormatException
+    public class InvalidSongException : FormatException
     {
         public InvalidSongException(string message = "Invalid song.") : base(message)
         {
