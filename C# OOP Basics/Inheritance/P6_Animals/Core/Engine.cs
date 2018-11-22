@@ -2,7 +2,6 @@
 using P6_Animals.Factories;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace P6_Animals.Core
 {
