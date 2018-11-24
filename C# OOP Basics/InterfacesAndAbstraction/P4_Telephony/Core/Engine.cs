@@ -18,7 +18,6 @@ namespace P4_Telephony.Core
 
             Smartphone smartphone = new Smartphone();
 
-
             while (numbersQueue.Count > 0)
             {
                 string number = numbersQueue.Dequeue();
