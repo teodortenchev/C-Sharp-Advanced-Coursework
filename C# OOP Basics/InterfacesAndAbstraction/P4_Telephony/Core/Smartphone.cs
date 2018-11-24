@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace P4_Telephony
 {
@@ -6,12 +7,9 @@ namespace P4_Telephony
     {
         public void Call(string number)
         {
-            for (int i = 0; i < number.Length; i++)
+            if (number.Any(x => !char.IsDigit(x)))
             {
-                if (!char.IsDigit(number[i]))
-                {
-                    throw new InvalidPhoneNumberException();
-                }
+                throw new InvalidPhoneNumberException();
             }
 
             Console.WriteLine($"Calling... {number}");
@@ -19,12 +17,9 @@ namespace P4_Telephony
 
         public void Browse(string url)
         {
-            for (int i = 0; i < url.Length; i++)
+            if (url.Any(x => char.IsDigit(x)))
             {
-                if(char.IsDigit(url[i]))
-                {
-                    throw new InvalidURLException();
-                }
+                throw new InvalidURLException();
             }
 
             Console.WriteLine($"Browsing: {url}!");
