@@ -1,10 +1,10 @@
-Telephony
+﻿Telephony
 ---------
 
 You have a business - **manufacturing cell phones**. But you have no software
 developers, so you call some friends of yours and ask them to help you create a
 cell phone software. They have already agreed and you started working on the
-project. The project consists of one main **model � a Smartphone**. Each of your
+project. The project consists of one main **model – a Smartphone**. Each of your
 smartphones should have functionalities of **calling other phones** and
 **browsing in the world wide web.**
 

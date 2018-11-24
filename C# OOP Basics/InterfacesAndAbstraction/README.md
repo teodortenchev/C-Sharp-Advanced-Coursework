@@ -1,4 +1,4 @@
-Exercises: Interfaces and Abstraction
+ÔªøExercises: Interfaces and Abstraction
 =====================================
 
 This document defines the **exercise assignments** for the ["C\# OOP Basics"
@@ -95,7 +95,7 @@ Telephony
 You have a business - **manufacturing cell phones**. But you have no software
 developers, so you call some friends of yours and ask them to help you create a
 cell phone software. They have already agreed and you started working on the
-project. The project consists of one main **model ñ a Smartphone**. Each of your
+project. The project consists of one main **model ‚Äì a Smartphone**. Each of your
 smartphones should have functionalities of **calling other phones** and
 **browsing in the world wide web.**
 
@@ -149,15 +149,15 @@ The input comes from the console. It will hold two lines:
 Border Control
 --------------
 
-Itís the future, youíre the ruler of a totalitarian dystopian society inhabited
-by **citizens** and **robots**, since youíre afraid of rebellions you decide to
+It‚Äôs the future, you‚Äôre the ruler of a totalitarian dystopian society inhabited
+by **citizens** and **robots**, since you‚Äôre afraid of rebellions you decide to
 implement strict control of who enters your city. Your soldiers check the
 **Id**s of everyone who enters and leaves.
 
 You will receive an unknown amount of lines from the console until the command
-ì**End**î is received, on each line there will be a piece of information for
+‚Äú**End**‚Äù is received, on each line there will be a piece of information for
 either a citizen or a robot who tries to enter your city in the format
-**ì\<name\> \<age\> \<id\>**î for **citizens** and ì**\<model\> \<id\>**î for
+**‚Äú\<name\> \<age\> \<id\>**‚Äù for **citizens** and ‚Äú**\<model\> \<id\>**‚Äù for
 **robots**. After the end command on the next line you will receive a single
 number representing **the last digits of fake ids**, all citizens or robots
 whose **Id** ends with the specified digits must be detained.
@@ -167,8 +167,8 @@ separate line in the **order** of **input**.
 
 ### Input
 
-The input comes from the console. Every commandsí parameters before the command
-ì**End**î will be separated by a **single space**.
+The input comes from the console. Every commands‚Äô parameters before the command
+‚Äú**End**‚Äù will be separated by a **single space**.
 
 ### Examples
 
@@ -181,16 +181,16 @@ Birthday Celebrations
 ---------------------
 
 It is a well known fact that people celebrate birthdays, it is also known that
-some people also celebrate their petsí birthdays. Extend the program from your
+some people also celebrate their pets‚Äô birthdays. Extend the program from your
 last task to add **birthdates** to citizens and include a class **Pet**, pets
 have a **name** and a **birthdate**. Encompass repeated functionality into
 interfaces and implement them in your classes.
 
 You will receive from the console an unknown amount of lines. Until the command
-ì**End**î is received, each line will contain information in one of the
-following formats **ìCitizen \<name\> \<age\> \<id\> \<birthdate\>**î for
-citizens, ì**Robot \<model\> \<id\>**î for robots or ì**Pet \<name\>
-\<birthdate\>**î for pets. After the ì**End**î command on the next line you will
+‚Äú**End**‚Äù is received, each line will contain information in one of the
+following formats **‚ÄúCitizen \<name\> \<age\> \<id\> \<birthdate\>**‚Äù for
+citizens, ‚Äú**Robot \<model\> \<id\>**‚Äù for robots or ‚Äú**Pet \<name\>
+\<birthdate\>**‚Äù for pets. After the ‚Äú**End**‚Äù command on the next line you will
 receive a single number representing **a specific year**, your task is to print
 all birthdates (of both citizens and pets) in that year in the format
 **day/month/year** in the **order** of **input**.
@@ -220,9 +220,9 @@ Citizens **start with 0 food**, when a Rebel buys food his **Food** increases by
 
 On the first line of the input you will receive an integer **N** - the number of
 people, on each of the next **N** lines you will receive information in one of
-the following formats ì**\<name\> \<age\> \<id\> \<birthdate\>**î for a Citizen
-or ì**\<name\> \<age\>\<group\>**î for a Rebel. After the **N** lines until the
-command ì**End**î is received, you will receive names of people who bought food,
+the following formats ‚Äú**\<name\> \<age\> \<id\> \<birthdate\>**‚Äù for a Citizen
+or ‚Äú**\<name\> \<age\>\<group\>**‚Äù for a Rebel. After the **N** lines until the
+command ‚Äú**End**‚Äù is received, you will receive names of people who bought food,
 each on a new line. Note that not all names may be valid, in case of an
 incorrect name - nothing should happen.
 
@@ -243,28 +243,28 @@ Military Elite
 
 Create the following class hierarchy:
 
--   **Soldier** ñ general class for soldiers, holding **id**, **first name** and
+-   **Soldier** ‚Äì general class for soldiers, holding **id**, **first name** and
     **last name.**
 
-    -   **Private** ñ lowest base soldier type, holding the field
+    -   **Private** ‚Äì lowest base soldier type, holding the field
         **salary**(decimal).
 
-        -   **LieutenantGeneral** ñ holds a set of **Privates** under his
+        -   **LieutenantGeneral** ‚Äì holds a set of **Privates** under his
             command.
 
-        -   **SpecialisedSoldier ñ** general class for all specialised soldiers
-            ñ holds the **corps** of the soldier. The corps can only be one of
+        -   **SpecialisedSoldier ‚Äì** general class for all specialised soldiers
+            ‚Äì holds the **corps** of the soldier. The corps can only be one of
             the following: **Airforces** or **Marines**.
 
-            -   **Engineer** ñ holds a set of **repairs**. A **repair** holds a
+            -   **Engineer** ‚Äì holds a set of **repairs**. A **repair** holds a
                 **part name** and **hours worked**(int).
 
-            -   **Commando** ñ holds a set of **missions**. A mission holds
+            -   **Commando** ‚Äì holds a set of **missions**. A mission holds
                 **code name** and a **state** (*inProgress* or *Finished*). A
                 mission can be finished through the method
                 **CompleteMission()**.
 
-    -   **Spy** ñ holds the **code number** of the spy (int).
+    -   **Spy** ‚Äì holds the **code number** of the spy (int).
 
 Extract **interfaces** for each class. (e.g. **ISoldier**, **IPrivate**,
 **ILieutenantGeneral**, etc.) The interfaces should hold their public properties
@@ -276,27 +276,27 @@ case of **invalid corps** the entire line should be skipped, in case of an
 **invalid mission state** only the mission should be skipped.
 
 You will receive from the console an unknown amount of lines containing
-information about soldiers until the command ì**End**î is received. The
+information about soldiers until the command ‚Äú**End**‚Äù is received. The
 information will be in one of the following formats:
 
--   Private: ì**Private \<id\> \<firstName\> \<lastName\> \<salary\>**î
+-   Private: ‚Äú**Private \<id\> \<firstName\> \<lastName\> \<salary\>**‚Äù
 
--   LeutenantGeneral: ì**LieutenantGeneral \<id\> \<firstName\> \<lastName\>
-    \<salary\> \<private1Id\> \<private2Id\> Ö \<privateNId\>**î where
+-   LeutenantGeneral: ‚Äú**LieutenantGeneral \<id\> \<firstName\> \<lastName\>
+    \<salary\> \<private1Id\> \<private2Id\> ‚Ä¶ \<privateNId\>**‚Äù where
     privateXId will **always** be an **Id** of a private already received
     through the input.
 
--   Engineer: ì**Engineer \<id\> \<firstName\> \<lastName\> \<salary\> \<corps\>
-    \<repair1Part\> \<repair1Hours\> Ö \<repairNPart\> \<repairNHours\>**î where
+-   Engineer: ‚Äú**Engineer \<id\> \<firstName\> \<lastName\> \<salary\> \<corps\>
+    \<repair1Part\> \<repair1Hours\> ‚Ä¶ \<repairNPart\> \<repairNHours\>**‚Äù where
     repairXPart is the name of a repaired part and repairXHours the hours it
     took to repair it (the two parameters will always come paired).
 
--   Commando: ì**Commando \<id\> \<firstName\> \<lastName\> \<salary\> \<corps\>
-    \<mission1CodeName\> \<mission1state\> Ö \<missionNCodeName\>
-    \<missionNstate\>**î a missions cde name, description and state will always
+-   Commando: ‚Äú**Commando \<id\> \<firstName\> \<lastName\> \<salary\> \<corps\>
+    \<mission1CodeName\> \<mission1state\> ‚Ä¶ \<missionNCodeName\>
+    \<missionNstate\>**‚Äù a missions cde name, description and state will always
     come together.
 
--   Spy: ì**Spy \<id\> \<firstName\> \<lastName\> \<codeNumber\>**î
+-   Spy: ‚Äú**Spy \<id\> \<firstName\> \<lastName\> \<codeNumber\>**‚Äù
 
 Define proper constructors. Avoid code duplication through abstraction. Override
 **ToString()** in all classes to print detailed information about the object.
@@ -313,7 +313,7 @@ Define proper constructors. Avoid code duplication through abstraction. Override
     **Privates:**  
     **\<private1 ToString()\>**  
     **\<private2 ToString()\>**  
-    **Ö**  
+    **‚Ä¶**  
     **\<privateN ToString()\>**
 
 -   **Engineer:**  
@@ -322,7 +322,7 @@ Define proper constructors. Avoid code duplication through abstraction. Override
     **Repairs:**  
     **\<repair1 ToString()\>**  
     **\<repair2 ToString()\>**  
-    **Ö**  
+    **‚Ä¶**  
     **\<repairN ToString()\>**
 
 -   **Commando:**  
@@ -331,7 +331,7 @@ Define proper constructors. Avoid code duplication through abstraction. Override
     **Missions:**  
     **\<mission1 ToString()\>**  
     **\<mission2 ToString()\>**  
-    **Ö**  
+    **‚Ä¶**  
     **\<missionN ToString()\>**
 
 -   **Repair:**  
@@ -355,7 +355,7 @@ separator.
 \*Collection Hierarchy
 ----------------------
 
-Create 3 different string collections ñ **AddCollection**,
+Create 3 different string collections ‚Äì **AddCollection**,
 **AddRemoveCollection** and **MyList**.
 
 The **AddCollection** should have:
@@ -365,7 +365,7 @@ The **AddCollection** should have:
 
 The **AddRemoveCollection** should have:
 
--   An **Add** method ñ which adds an item to the **start** of the collection.
+-   An **Add** method ‚Äì which adds an item to the **start** of the collection.
 
 -   A **Remove** method which removes the **last** item in the collection.
 
@@ -443,7 +443,7 @@ The output will consist of 5 lines:
 ### Hint
 
 Create an interface hierarchy representing the collections. You can use a List
-as the underlying collection and implement the methods using the Listís Add,
+as the underlying collection and implement the methods using the List‚Äôs Add,
 Remove and Insert methods.
 
 \*Explicit Interfaces
@@ -453,12 +453,12 @@ Create 2 interfaces **IResident** and **IPerson**. **IResident** should have a
 **name**, **country** and a method **GetName()**. **IPerson** should have a
 **name**, an **age** and a method **GetName()**. Create a class Citizen which
 implements both **IResident** and **IPerson**, explicitly declare that
-IResidentís **GetName()** method should return ìMr/Ms/Mrs î before the name
-while IPersonís **GetName()** method should return just the name. You will
+IResident‚Äôs **GetName()** method should return ‚ÄúMr/Ms/Mrs ‚Äù before the name
+while IPerson‚Äôs **GetName()** method should return just the name. You will
 receive lines of citizen information from the console until the command
-ì**End**î is received. Each will be in the format **ì\<name\> \<country\>
-\<age\>**î for each line create the corresponding citizen and print his
-**IPersonís GetName()** and his **IResitentís GetName().**
+‚Äú**End**‚Äù is received. Each will be in the format **‚Äú\<name\> \<country\>
+\<age\>**‚Äù for each line create the corresponding citizen and print his
+**IPerson‚Äôs GetName()** and his **IResitent‚Äôs GetName().**
 
 ### Examples
 
