@@ -11,7 +11,7 @@ namespace MilitaryElite.Models
 
         public int CodeNumber { get; private set; }
 
-        public override string ToString() => $"{FirstName} {LastName} Id: {Id}" + Environment.NewLine +
+        public override string ToString() => $"Name: {FirstName} {LastName} Id: {Id}" + Environment.NewLine +
                                              $"Code Number: {CodeNumber}";
     }
 }
