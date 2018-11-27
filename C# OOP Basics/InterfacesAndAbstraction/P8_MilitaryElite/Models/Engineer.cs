@@ -10,7 +10,7 @@ namespace MilitaryElite.Models
     {
         private List<IRepairs> repairs;
 
-        public Engineer(string firstName, string lastName, int id, decimal salary, Corps corps) 
+        public Engineer(string firstName, string lastName, int id, decimal salary, Corps corps)
             : base(firstName, lastName, id, salary, corps)
         {
             repairs = new List<IRepairs>();
@@ -25,7 +25,7 @@ namespace MilitaryElite.Models
 
         public override string ToString()
         {
-            string firstLine = base.ToString() + Environment.NewLine 
+            string firstLine = base.ToString() + Environment.NewLine
                             + $"Corps: {Corps.ToString("f")}" + Environment.NewLine + "Repairs:";
 
             string secondLine = ReturnRepairs();
@@ -34,7 +34,7 @@ namespace MilitaryElite.Models
             {
                 return firstLine;
             }
-            return firstLine + Environment.NewLine + secondLine ;
+            return firstLine + Environment.NewLine + secondLine;
 
         }
 
@@ -44,10 +44,10 @@ namespace MilitaryElite.Models
 
             foreach (var repair in Repairs)
             {
-                sb.AppendLine(repair.ToString());
+                sb.AppendLine("  " + repair.ToString());
             }
 
-            return sb.ToString().Trim();
+            return sb.ToString();
         }
     }
 }

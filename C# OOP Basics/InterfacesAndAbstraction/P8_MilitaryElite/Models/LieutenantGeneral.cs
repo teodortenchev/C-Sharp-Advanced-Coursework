@@ -38,10 +38,10 @@ namespace MilitaryElite.Models
 
             foreach (var soldier in Privates)
             {
-                sb.AppendLine(soldier.ToString());
+                sb.AppendLine("  " + soldier.ToString());
             }
 
-            return sb.ToString().Trim();
+            return sb.ToString();
         }
     }
 }

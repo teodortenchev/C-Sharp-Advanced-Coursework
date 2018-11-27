@@ -36,10 +36,10 @@ namespace MilitaryElite.Models
 
             foreach (var mission in Missions)
             {
-                sb.AppendLine(mission.ToString());
+                sb.AppendLine("  " + mission.ToString());
             }
 
-            return sb.ToString().Trim();
+            return sb.ToString();
         }
     }
 }
