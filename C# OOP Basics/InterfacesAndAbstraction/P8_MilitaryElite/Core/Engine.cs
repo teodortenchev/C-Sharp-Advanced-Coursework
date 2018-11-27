@@ -21,7 +21,6 @@ namespace MilitaryElite.Core
         }
         public void Run()
         {
-            //            •	Private: “Private<id> < firstName > < lastName > < salary >”
             string input = Console.ReadLine();
 
             while (input != "End")
@@ -37,28 +36,23 @@ namespace MilitaryElite.Core
                 {
                     decimal salary = decimal.Parse(args[4]);
                     soldier = new Private(firstName, lastName, id, salary);
-                    Console.WriteLine(soldier);
                 }
                 else if (type == "LieutenantGeneral")
                 {
                     soldier = GeneratePrivate(id, firstName, lastName, args);
-                    Console.WriteLine(soldier);
                 }
                 else if (type == "Engineer")
                 {
                     soldier = GenerateEngineer(id, firstName, lastName, args);
-                    Console.WriteLine(soldier);
                 }
                 else if(type == "Commando")
                 {
                     soldier = GenerateCommando(id, firstName, lastName, args);
-                    Console.WriteLine(soldier);
                 }
                 else if(type == "Spy")
                 {
                     int codeNumber = int.Parse(args[4]);
                     soldier = GenerateSpy(id, firstName, lastName, codeNumber);
-                    Console.WriteLine(soldier);
                 }
 
                 if (soldier != null)
@@ -69,6 +63,16 @@ namespace MilitaryElite.Core
                 input = Console.ReadLine();
             }
 
+            ListSoldiers();
+
+        }
+
+        private void ListSoldiers()
+        {
+            foreach (var soldier in soldiers)
+            {
+                Console.WriteLine(soldier.ToString());
+            }
         }
 
         private ISoldier GenerateSpy(int id, string firstName, string lastName, int codeNumber)
