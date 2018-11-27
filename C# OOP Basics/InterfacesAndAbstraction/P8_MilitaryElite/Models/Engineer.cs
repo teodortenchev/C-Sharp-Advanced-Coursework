@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using MilitaryElite.Contracts;
 using MilitaryElite.Enums;
 
@@ -15,9 +16,9 @@ namespace MilitaryElite.Models
             repairs = new List<IRepairs>();
         }
 
-        public IReadOnlyCollection<IRepairs> Repairs { get => repairs.AsReadOnly(); }
+        public ICollection<IRepairs> Repairs { get => repairs.AsReadOnly(); }
 
-        public void AddRepair(Repair repair)
+        public void AddRepair(IRepairs repair)
         {
             repairs.Add(repair);
         }
@@ -27,9 +28,26 @@ namespace MilitaryElite.Models
             string firstLine = base.ToString() + Environment.NewLine 
                             + $"Corps: {Corps.ToString("f")}" + Environment.NewLine + "Repairs:";
 
-            string secondLine = String.Join(Environment.NewLine, repairs.ToString());
+            string secondLine = ReturnRepairs();
 
-            return firstLine + Environment.NewLine + secondLine;
+            if (Repairs.Count == 0)
+            {
+                return firstLine;
+            }
+            return firstLine + Environment.NewLine + secondLine ;
+
+        }
+
+        private string ReturnRepairs()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var repair in Repairs)
+            {
+                sb.AppendLine(repair.ToString());
+            }
+
+            return sb.ToString().Trim();
         }
     }
 }

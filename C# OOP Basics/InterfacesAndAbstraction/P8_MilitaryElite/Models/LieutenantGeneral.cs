@@ -7,7 +7,7 @@ namespace MilitaryElite.Models
 {
     public class LieutenantGeneral : Private, ILieutenantGeneral
     {
-       
+
 
         public LieutenantGeneral(string firstName, string lastName, int id, decimal salary)
             : base(firstName, lastName, id, salary)
@@ -15,16 +15,20 @@ namespace MilitaryElite.Models
             Privates = new List<IPrivate>();
         }
 
-        public ICollection<IPrivate> Privates { get; set; } 
+        public ICollection<IPrivate> Privates { get; set; }
 
-     
 
-        //TODO Does this really work?
+
+       
         public override string ToString()
         {
-            string firstLine = $"Name: {FirstName} {LastName} Id: {Id} Salary: {Salary:F2}" + Environment.NewLine + "Privates:";
+            string firstLine = base.ToString() + Environment.NewLine + "Privates:";
             string listPrivates = ReturnPrivates();
 
+            if (Privates.Count == 0)
+            {
+                return firstLine;
+            }
             return firstLine + Environment.NewLine + listPrivates;
         }
 

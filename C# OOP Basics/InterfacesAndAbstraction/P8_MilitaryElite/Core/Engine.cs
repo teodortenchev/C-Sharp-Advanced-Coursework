@@ -1,4 +1,5 @@
 ﻿using MilitaryElite.Contracts;
+using MilitaryElite.Enums;
 using MilitaryElite.Models;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,14 @@ namespace MilitaryElite.Core
 {
     public class Engine
     {
-        private static List<ISoldier> soldiers;
+        private List<ISoldier> soldiers;
+        private ISoldier soldier;
 
         public Engine()
         {
             soldiers = new List<ISoldier>();
+            soldier = null;
+
         }
         public void Run()
         {
@@ -28,9 +32,8 @@ namespace MilitaryElite.Core
                 string firstName = args[2];
                 string lastName = args[3];
 
-                ISoldier soldier = null;
 
-                if(type == "Private")
+                if (type == "Private")
                 {
                     decimal salary = decimal.Parse(args[4]);
                     soldier = new Private(firstName, lastName, id, salary);
@@ -38,11 +41,21 @@ namespace MilitaryElite.Core
                 }
                 else if (type == "LieutenantGeneral")
                 {
-                    soldier = GenerateLieutenant(id, firstName, lastName, args);
+                    soldier = GeneratePrivate(id, firstName, lastName, args);
+                    Console.WriteLine(soldier);
+                }
+                else if (type == "Engineer")
+                {
+                    soldier = GenerateEngineer(id, firstName, lastName, args);
+                    Console.WriteLine(soldier);
+                }
+                else if(type == "Commando")
+                {
+                    soldier = GenerateCommando(id, firstName, lastName, args);
                     Console.WriteLine(soldier);
                 }
 
-                if(soldier != null)
+                if (soldier != null)
                 {
                     soldiers.Add(soldier);
                 }
@@ -52,7 +65,59 @@ namespace MilitaryElite.Core
 
         }
 
-        private ISoldier GenerateLieutenant(int id, string firstName, string lastName, string[] args)
+        private ISoldier GenerateCommando(int id, string firstName, string lastName, string[] args)
+        {
+            string corpsAsString = args[5];
+
+            if(!Enum.TryParse(corpsAsString, out Corps corps))
+            {
+                return null;
+            }
+
+            ICommando commando = new Commando(firstName, lastName, id, decimal.Parse(args[4]), corps);
+
+            for (int i = 6; i < args.Length; i+= 2)
+            {
+                string missionName = args[i];
+                string missionStateAsString = args[i + 1];
+
+                if (!Enum.TryParse(missionStateAsString, out State state))
+                {
+                    continue;
+                }
+
+                IMission mission = new Mission(missionName, state);
+
+                commando.Missions.Add(mission);
+            
+            }
+
+            return commando;
+        }
+
+        private ISoldier GenerateEngineer(int id, string firstName, string lastName, string[] args)
+        {
+            string corpsAsString = args[5];
+
+            if (!Enum.TryParse(corpsAsString, out Corps corps))
+            {
+                return null;
+            }
+            IEngineer engineer = new Engineer(firstName, lastName, id, decimal.Parse(args[4]), corps);
+
+            for (int i = 6; i < args.Length; i += 2)
+            {
+                string partName = args[i];
+                int hoursWorked = int.Parse(args[i + 1]);
+
+                IRepairs repair = new Repair(partName, hoursWorked);
+                engineer.AddRepair(repair);
+            }
+
+            return engineer;
+        }
+
+        private ISoldier GeneratePrivate(int id, string firstName, string lastName, string[] args)
         {
             ILieutenantGeneral lieutenant = new LieutenantGeneral(firstName, lastName, id, decimal.Parse(args[4]));
 
@@ -64,7 +129,7 @@ namespace MilitaryElite.Core
             }
 
             return lieutenant;
-            
+
         }
     }
 }

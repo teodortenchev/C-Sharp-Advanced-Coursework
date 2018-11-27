@@ -4,11 +4,7 @@ namespace MilitaryElite.Models
 {
     public abstract class Soldier : ISoldier
     {
-        private string firstName;
-        private string lastName;
-        private int id;
-
-        public Soldier (string firstName, string lastName, int id)
+        public Soldier(string firstName, string lastName, int id)
         {
             FirstName = firstName;
             LastName = lastName;

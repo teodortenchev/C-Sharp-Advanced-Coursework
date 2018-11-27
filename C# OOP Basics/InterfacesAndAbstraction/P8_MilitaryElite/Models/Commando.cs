@@ -7,10 +7,10 @@ namespace MilitaryElite.Models
 {
     public class Commando : SpecialisedSoldier, ICommando
     {
-        public Commando(string firstName, string lastName, int id, decimal salary, Corps corps, List<IMission> missions)
+        public Commando(string firstName, string lastName, int id, decimal salary, Corps corps)
             : base(firstName, lastName, id, salary, corps)
         {
-            Missions = missions;
+            Missions = new List<IMission>();
         }
 
         public ICollection<IMission> Missions { get; set; }
