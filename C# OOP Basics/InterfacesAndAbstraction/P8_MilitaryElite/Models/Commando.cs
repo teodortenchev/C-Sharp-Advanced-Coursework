@@ -2,6 +2,7 @@
 using MilitaryElite.Enums;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MilitaryElite.Models
 {
@@ -18,11 +19,27 @@ namespace MilitaryElite.Models
         public override string ToString()
         {
             string firstLine = base.ToString()
-                            + $"Corps: {Corps.ToString("f")}" + Environment.NewLine + "Missions:";
+                            + Environment.NewLine +$"Corps: {Corps.ToString("f")}" + Environment.NewLine + "Missions:";
 
-            string secondLine = String.Join(Environment.NewLine, Missions.ToString());
+            string secondLine = ReturnMissions();
 
+            if (Missions.Count == 0)
+            {
+                return firstLine;
+            }
             return firstLine + Environment.NewLine + secondLine;
+        }
+
+        private string ReturnMissions()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var mission in Missions)
+            {
+                sb.AppendLine(mission.ToString());
+            }
+
+            return sb.ToString().Trim();
         }
     }
 }

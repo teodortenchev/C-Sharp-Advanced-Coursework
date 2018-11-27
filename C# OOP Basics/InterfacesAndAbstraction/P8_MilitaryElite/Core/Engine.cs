@@ -54,6 +54,12 @@ namespace MilitaryElite.Core
                     soldier = GenerateCommando(id, firstName, lastName, args);
                     Console.WriteLine(soldier);
                 }
+                else if(type == "Spy")
+                {
+                    int codeNumber = int.Parse(args[4]);
+                    soldier = GenerateSpy(id, firstName, lastName, codeNumber);
+                    Console.WriteLine(soldier);
+                }
 
                 if (soldier != null)
                 {
@@ -63,6 +69,13 @@ namespace MilitaryElite.Core
                 input = Console.ReadLine();
             }
 
+        }
+
+        private ISoldier GenerateSpy(int id, string firstName, string lastName, int codeNumber)
+        {
+            ISpy spy = new Spy(firstName, lastName, id, codeNumber);
+
+            return spy;
         }
 
         private ISoldier GenerateCommando(int id, string firstName, string lastName, string[] args)
