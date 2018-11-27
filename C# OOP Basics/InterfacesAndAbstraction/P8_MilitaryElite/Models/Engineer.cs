@@ -47,7 +47,7 @@ namespace MilitaryElite.Models
                 sb.AppendLine("  " + repair.ToString());
             }
 
-            return sb.ToString();
+            return sb.ToString().TrimEnd();
         }
     }
 }
