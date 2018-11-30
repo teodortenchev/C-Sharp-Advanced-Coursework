@@ -14,7 +14,11 @@ namespace CollectionHierarchy.CustomCollections
         protected List<T> Data { get; private set; }
 
         
-
+        /// <summary>
+        /// Adds element at the end of the collection and returns its index.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public virtual int Add(T item)
         {
             Data.Add(item);

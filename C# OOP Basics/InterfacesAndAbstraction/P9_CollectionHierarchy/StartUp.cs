@@ -1,14 +1,13 @@
-﻿using CollectionHierarchy.CustomCollections;
-using System;
+﻿using CollectionHierarchy.Core;
 
 namespace CollectionHierarchy
 {
-    class StartUp
+    public class StartUp
     {
         static void Main(string[] args)
         {
-            
-            
+            Engine engine = new Engine();
+            engine.Run();
         }
     }
 }
