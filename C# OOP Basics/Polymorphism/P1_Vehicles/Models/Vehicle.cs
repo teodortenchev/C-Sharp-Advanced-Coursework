@@ -21,12 +21,12 @@ namespace Vehicles.Models
 
             if (fuelNeeded > FuelQuantity)
             {
-                throw new Exception("Car needs refueling");
+                throw new Exception($"{GetType().Name} needs refueling");
             }
 
             FuelQuantity -= fuelNeeded;
 
-            Console.WriteLine($"Car travelled {distanceKM} km");
+            Console.WriteLine($"{GetType().Name} travelled {distanceKM} km");
         }
 
         public virtual void Refuel(double liters)
@@ -39,7 +39,7 @@ namespace Vehicles.Models
 
         public override string ToString()
         {
-            return $"{GetType().Name} {FuelQuantity:F2}";
+            return $"{GetType().Name}: {FuelQuantity:F2}";
         }
     }
 }
