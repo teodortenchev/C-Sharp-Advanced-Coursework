@@ -1,12 +1,13 @@
-﻿using System;
+﻿using WildFarm.Core;
 
 namespace P3_WildFarm
 {
-    class StartUp
+    public class StartUp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Engine engine = new Engine();
+            engine.Run();
         }
     }
 }
