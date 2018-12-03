@@ -16,10 +16,7 @@ namespace MilitaryElite.Models
         }
 
         public ICollection<IPrivate> Privates { get; set; }
-
-
-
-       
+        
         public override string ToString()
         {
             string firstLine = base.ToString() + Environment.NewLine + "Privates:";
