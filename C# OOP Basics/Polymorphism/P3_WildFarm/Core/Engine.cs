@@ -47,7 +47,7 @@ namespace WildFarm.Core
 
                 try
                 {
-                    GiveFood(food, animalName);
+                    GiveFood(food, animalName, animalType);
                 }
                 catch (Exception ex)
                 {
@@ -59,12 +59,11 @@ namespace WildFarm.Core
             PrintAnimalsInfo();
         }
 
-        //Let's assume animal name is the unique identifier, altough ideally this should not be the case.
-        private void GiveFood(Food food, string animalName)
+        //Let's assume animal name is the unique identifier, although ideally this should not be the case.
+        private void GiveFood(Food food, string animalName, string animalType)
         {
-            Animal animal = animals.FirstOrDefault(a => a.Name == animalName);
+            Animal animal = animals.FirstOrDefault(a => a.Name == animalName && a.GetType().Name == animalType);
 
-            string animalType = animal.GetType().Name;
             string foodType = food.GetType().Name;
 
             switch (animalType)

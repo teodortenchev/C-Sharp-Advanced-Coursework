@@ -7,7 +7,7 @@ namespace WildFarm.Animals
     {
         public Tiger(string name, double weight, string livingRegion, string breed) : base(name, weight, livingRegion, breed)
         {
-            WeightGain = 4;
+            WeightGain = 1;
         }
 
         public override void ProduceSound()

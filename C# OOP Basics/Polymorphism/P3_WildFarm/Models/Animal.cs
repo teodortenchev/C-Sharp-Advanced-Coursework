@@ -9,7 +9,6 @@ namespace WildFarm.Models
         public int FoodEaten { get; protected set; }
         protected double WeightGain { get; set; }
         public bool LikesFood { get; set; }
-        //TODO Don't forget about LIKESFOOD
 
         public Animal(string name, double weight)
         {
@@ -28,7 +27,7 @@ namespace WildFarm.Models
                 throw new Exception($"{GetType().Name} does not eat {food.GetType().Name}!");
             }
             Weight += WeightGain * food.Quantity;
-            FoodEaten+= food.Quantity;
+            FoodEaten += food.Quantity;
         }
     }
 }
