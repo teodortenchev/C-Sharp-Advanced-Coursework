@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-StorageMaster.Entities.Vehicles
+namespace StorageMaster.Entities.Vehicles
 {
     public abstract class Vehicle
     {

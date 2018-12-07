@@ -1,4 +1,4 @@
-﻿StorageMaster.Entities.Vehicles
+﻿namespace StorageMaster.Entities.Vehicles
 {
     public class Semi : Vehicle
     {
