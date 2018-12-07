@@ -11,6 +11,7 @@ namespace StorageMaster.Entities.Vehicles
 
         protected Vehicle(int capacity)
         {
+            products = new List<Product>();
             Capacity = capacity;
         }
 

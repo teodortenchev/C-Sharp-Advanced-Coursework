@@ -1,13 +1,19 @@
-﻿using System;
-using StorageMaster.Entities.Products;
+﻿using StorageMaster.Entities.Vehicles;
+using System.Linq;
+
 
 namespace StorageMaster
 {
-    class StartUp
+    public class StartUp
     {
         static void Main(string[] args)
         {
-            Gpu gpu = new Gpu(1);
+            Vehicle[] test = new Vehicle[1];
+            test[0] = new Truck();
+
+            bool hasSpace = test.Any(p => p == null);
+            ;
+
         }
     }
 }
