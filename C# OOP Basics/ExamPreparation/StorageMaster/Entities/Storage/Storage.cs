@@ -58,6 +58,12 @@ namespace StorageMaster.Entities.Storage
             return garage[garageSlot];
         }
 
+        /// <summary>
+        /// returns the garage slot the vehicle was assigned when it was transferred
+        /// </summary>
+        /// <param name="garageSlot"></param>
+        /// <param name="deliveryLocation"></param>
+        /// <returns></returns>
         public int SendVehicleTo(int garageSlot, Storage deliveryLocation)
         {
             Vehicle vehicle = GetVehicle(garageSlot);
