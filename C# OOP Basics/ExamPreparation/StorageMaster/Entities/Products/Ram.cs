@@ -1,4 +1,4 @@
-﻿namespace StorageMaster.Products
+﻿namespace StorageMaster.Entities.Products
 {
     public class Ram : Product
     {

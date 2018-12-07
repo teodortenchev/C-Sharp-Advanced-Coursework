@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StorageMaster.Products
+namespace StorageMaster.Entities.Products
 {
     public abstract class Product
     {

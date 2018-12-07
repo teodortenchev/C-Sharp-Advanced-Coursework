@@ -1,9 +1,9 @@
-﻿using StorageMaster.Products;
+﻿using StorageMaster.Entities.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace StorageMaster.Vehicles
+StorageMaster.Entities.Vehicles
 {
     public abstract class Vehicle
     {
