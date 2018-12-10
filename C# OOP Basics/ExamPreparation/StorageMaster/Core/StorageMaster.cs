@@ -138,7 +138,31 @@ namespace StorageMaster.Core
 
         public string GetStorageStatus(string storageName)
         {
-            throw new NotImplementedException();
+            Storage storage = storageRegistry.FirstOrDefault(s => s.Name == storageName);
+
+            Dictionary<string, int> productsAndCounts = new Dictionary<string, int>();
+
+            foreach (var product in storage.Products)
+            {
+                string productName = product.GetType().Name;
+
+                if (!productsAndCounts.ContainsKey(productName))
+                {
+                    productsAndCounts.Add(productName, 1);
+                }
+
+                productsAndCounts[productName]++;
+            }
+
+            string[] productsAndCountString = productsAndCounts.OrderByDescending(p => p.Value)
+                .ThenBy(p => p.Key).Select(kvp => $"{kvp.Key} ({kvp.Value})").ToArray();
+
+            double weight = storage.Products.Sum(p => p.Weight);
+
+            string stockLine = $"({weight} / {storage.Capacity}): [{String.Join(',', productsAndCountString)}]";
+
+            //TODO: Garage representation, empty cells must print out Empty. Figure out the short and long way of doing so.
+           
         }
 
         public string GetSummary()
