@@ -188,6 +188,8 @@ namespace StorageMaster.Core
             //garageArrayRepresentation = storage.Garage.Select(g => g == null ? "empty" : g.GetType().Name).ToArray();
 
             string result = stockLine + Environment.NewLine + garageLine;
+
+            return result;
         }
 
         public string GetSummary()
