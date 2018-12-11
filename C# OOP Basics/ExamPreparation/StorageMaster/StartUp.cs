@@ -1,6 +1,4 @@
-﻿using StorageMaster.Entities.Vehicles;
-using System.Linq;
-
+﻿using StorageMaster.Core;
 
 namespace StorageMaster
 {
@@ -8,12 +6,8 @@ namespace StorageMaster
     {
         static void Main(string[] args)
         {
-            Vehicle[] test = new Vehicle[1];
-            test[0] = new Truck();
-
-            bool hasSpace = test.Any(p => p == null);
-            ;
-
+            Engine engine = new Engine();
+            engine.Run();
         }
     }
 }
