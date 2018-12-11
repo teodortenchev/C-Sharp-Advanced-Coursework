@@ -194,7 +194,15 @@ namespace StorageMaster.Core
 
         public string GetSummary()
         {
-            throw new NotImplementedException();
+            string[] storageRepresentationStrings = storageRegistry
+                                        .OrderByDescending(s => s.Products.Sum(p => p.Price))
+                                        .Select(storage => $"{storage.Name}:" + Environment.NewLine 
+                                        + $"Storage worth: ${storage.Products.Sum(p => p.Price)}")
+                                        .ToArray();
+
+            string result = String.Join(Environment.NewLine, storageRepresentationStrings);
+
+            return result;
         }
 
     }
