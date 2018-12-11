@@ -5,6 +5,7 @@ using StorageMaster.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace StorageMaster.Core
 {
@@ -161,8 +162,32 @@ namespace StorageMaster.Core
 
             string stockLine = $"({weight} / {storage.Capacity}): [{String.Join(',', productsAndCountString)}]";
 
-            //TODO: Garage representation, empty cells must print out Empty. Figure out the short and long way of doing so.
-           
+            string[] garageRepresentation = new string[storage.GarageSlots];
+
+            int index = 0;
+
+            foreach (var slot in storage.Garage)
+            {
+                if(slot == null)
+                {
+                    garageRepresentation[index] = "empty";
+                }
+                else
+                {
+                    garageRepresentation[index] = slot.GetType().Name;
+                }
+
+                index++;
+            }
+
+            string garageLine = $"Garage: [{String.Join('|', garageRepresentation)}]";
+
+
+            //Shorter way to do above:
+            //string[] garageArrayRepresentation = new string[storage.GarageSlots];
+            //garageArrayRepresentation = storage.Garage.Select(g => g == null ? "empty" : g.GetType().Name).ToArray();
+
+            string result = stockLine + Environment.NewLine + garageLine;
         }
 
         public string GetSummary()
