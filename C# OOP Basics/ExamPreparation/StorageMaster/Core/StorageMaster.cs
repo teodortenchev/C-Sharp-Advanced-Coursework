@@ -47,7 +47,7 @@ namespace StorageMaster.Core
             Storage storage = storageFactory.CreateStorage(type, name);
             storageRegistry.Add(storage);
 
-            string output = $"Registered {type}";
+            string output = $"Registered {name}";
 
             return output;
         }
@@ -116,6 +116,8 @@ namespace StorageMaster.Core
 
         }
 
+
+        //TODO: Fix this. No products left in Vehicle when attempting to unload
         /// <summary>
         /// Gets the vehicle in the storage’s garage slot. Then, the vehicle is unloaded at the storage.
         /// </summary>
