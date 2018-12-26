@@ -96,7 +96,7 @@ namespace StorageMaster.Entities.Storage
 
             int productsAdded = 0;
 
-            while (this.IsFull == false || vehicle.IsEmpty == false)
+            while (this.IsFull == false && vehicle.IsEmpty == false)
             {
                 Product product = vehicle.Unload();
                 products.Add(product);
