@@ -5,6 +5,7 @@ using StorageMaster.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace StorageMaster.Core
 {
@@ -96,11 +97,11 @@ namespace StorageMaster.Core
         {
             if (storageRegistry.FirstOrDefault(s => s.Name == sourceName) == null)
             {
-                throw new InvalidOperationException("Invalid source storage");
+                throw new InvalidOperationException("Invalid source storage!");
             }
             if (storageRegistry.FirstOrDefault(s => s.Name == destinationName) == null)
             {
-                throw new InvalidOperationException("Invalid destinations storage");
+                throw new InvalidOperationException("Invalid destination storage!");
             }
 
             Storage sourceStorage = storageRegistry.First(s => s.Name == sourceName);
@@ -130,8 +131,9 @@ namespace StorageMaster.Core
 
             Vehicle vehicle = storage.GetVehicle(garageSlot);
 
-            int unloadedProductsCount = storage.UnloadVehicle(garageSlot);
             int productsInVehicle = vehicle.Trunk.Count();
+
+            int unloadedProductsCount = storage.UnloadVehicle(garageSlot);
 
             string output = $"Unloaded {unloadedProductsCount}/{productsInVehicle} products at {storageName}";
 
@@ -152,8 +154,10 @@ namespace StorageMaster.Core
                 {
                     productsAndCounts.Add(productName, 1);
                 }
-
-                productsAndCounts[productName]++;
+                else
+                {
+                    productsAndCounts[productName]++;
+                }
             }
 
             string[] productsAndCountString = productsAndCounts.OrderByDescending(p => p.Value)
@@ -161,7 +165,7 @@ namespace StorageMaster.Core
 
             double weight = storage.Products.Sum(p => p.Weight);
 
-            string stockLine = $"({weight} / {storage.Capacity}): [{String.Join(',', productsAndCountString)}]";
+            string stockLine = $"Stock ({weight}/{storage.Capacity}): [{String.Join(", ", productsAndCountString)}]";
 
             string[] garageRepresentation = new string[storage.GarageSlots];
 
@@ -169,7 +173,7 @@ namespace StorageMaster.Core
 
             foreach (var slot in storage.Garage)
             {
-                if(slot == null)
+                if (slot == null)
                 {
                     garageRepresentation[index] = "empty";
                 }
@@ -195,14 +199,19 @@ namespace StorageMaster.Core
 
         public string GetSummary()
         {
-            string[] storageRepresentationStrings = storageRegistry
-                                        .OrderByDescending(s => s.Products.Sum(p => p.Price))
-                                        .Select(storage => $"{storage.Name}:" + Environment.NewLine 
-                                        + $"Storage worth: ${storage.Products.Sum(p => p.Price)}")
-                                        .ToArray();
+            Storage[] sortedStorages = storageRegistry.OrderByDescending(s => s.Products.Sum(p => p.Price))
+                .ToArray();
 
-            string result = String.Join(Environment.NewLine, storageRepresentationStrings);
+            StringBuilder sb = new StringBuilder();
 
+            foreach (Storage storage in sortedStorages)
+            {
+                double totalValue = storage.Products.Sum(p => p.Price);
+                sb.AppendLine($"{storage.Name}:");
+                sb.AppendLine($"Storage worth: ${totalValue:F2}");
+            }
+
+            string result = sb.ToString().TrimEnd();
             return result;
         }
 
