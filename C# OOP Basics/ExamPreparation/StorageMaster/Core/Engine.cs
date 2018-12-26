@@ -35,12 +35,11 @@ namespace StorageMaster.Core
                 {
                     Console.WriteLine($"Error: {exception.Message}");
                 }
-                
-
-                
 
                 input = Console.ReadLine();
             }
+
+            Console.WriteLine(storageMaster.GetSummary());
         }
 
         private string ParseCommand(string command, string[] parameters)
