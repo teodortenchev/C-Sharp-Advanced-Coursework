@@ -12,8 +12,6 @@
             this.appender = appender;
         }
 
-       
-
         public void Error(string dateTime, string errorMessage)
         {
             appender.Append(dateTime, "Error", errorMessage);

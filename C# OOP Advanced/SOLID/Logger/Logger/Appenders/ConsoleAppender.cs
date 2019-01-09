@@ -1,8 +1,8 @@
 ﻿namespace Logger.Appenders
 {
+    using System;
     using Contracts;
     using Layouts.Contracts;
-    using System;
 
     public class ConsoleAppender : IAppender
     {
@@ -17,6 +17,5 @@
         {
             Console.WriteLine(string.Format(layout.Format, dateTime, errorLevel, message));
         }
-    
     }
 }
