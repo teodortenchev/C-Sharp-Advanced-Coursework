@@ -5,21 +5,25 @@
 
     public class Logger : ILogger
     {
-        private readonly IAppender appender;
+        private readonly IAppender consoleAppender;
+        private readonly IAppender fileAppender;
 
-        public Logger(IAppender appender)
+        public Logger(IAppender consoleAppender, IAppender fileAppender)
         {
-            this.appender = appender;
+            this.consoleAppender = consoleAppender;
+            this.fileAppender = fileAppender;
         }
 
         public void Error(string dateTime, string errorMessage)
         {
-            appender.Append(dateTime, "Error", errorMessage);
+            consoleAppender.Append(dateTime, "Error", errorMessage);
+            fileAppender.Append(dateTime, "Error", errorMessage);
         }
 
         public void Info(string dateTime, string errorMessage)
         {
-            appender.Append(dateTime, "Info", errorMessage);
+            consoleAppender.Append(dateTime, "Info", errorMessage);
+            fileAppender.Append(dateTime, "Info", errorMessage);
         }
     }
 }
