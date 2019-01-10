@@ -1,7 +1,10 @@
-﻿namespace Logger.Appenders.Contracts
+﻿
+namespace Logger.Appenders.Contracts
 {
+    using Loggers.Enums;
+
     public interface IAppender
     {
-        void Append(string dateTime, string errorLevel, string message);
+        void Append(string dateTime, ReportLevel reportLevel, string message);
     }
 }

@@ -3,6 +3,7 @@
     using System;
     using Contracts;
     using Layouts.Contracts;
+    using Loggers.Enums;
 
     public class ConsoleAppender : IAppender
     {
@@ -13,9 +14,14 @@
             this.layout = layout;
         }
 
-        public void Append(string dateTime, string errorLevel, string message)
+        public ReportLevel ReportLevel { get; set; }
+
+        public void Append(string dateTime, ReportLevel reportLevel, string message)
         {
-            Console.WriteLine(string.Format(layout.Format, dateTime, errorLevel, message));
+            if(reportLevel >= this.ReportLevel)
+            {
+            Console.WriteLine(string.Format(layout.Format, dateTime, reportLevel, message));
+            }
         }
     }
 }
