@@ -21,34 +21,35 @@
 
         public void Critical(string dateTime, string errorMessage)
         {
-            this.AppendMessage(dateTime, ReportLevel.Critical, errorMessage);
+            this.AppendMessage(dateTime, ReportLevel.CRITICAL, errorMessage);
         }
 
         public void Error(string dateTime, string errorMessage)
         {
-            this.AppendMessage(dateTime, ReportLevel.Error, errorMessage);
+            this.AppendMessage(dateTime, ReportLevel.ERROR, errorMessage);
 
         }
 
         public void Fatal(string dateTime, string errorMessage)
         {
-            this.AppendMessage(dateTime, ReportLevel.Fatal, errorMessage);
+            this.AppendMessage(dateTime, ReportLevel.FATAL, errorMessage);
         }
 
         public void Info(string dateTime, string errorMessage)
         {
-            this.AppendMessage(dateTime, ReportLevel.Info, errorMessage);
+            this.AppendMessage(dateTime, ReportLevel.INFO, errorMessage);
         }
 
         public void Warning(string dateTime, string errorMessage)
         {
-            this.AppendMessage(dateTime, ReportLevel.Warning, errorMessage);
+            this.AppendMessage(dateTime, ReportLevel.WARNING, errorMessage);
         }
 
         private void AppendMessage(string dateTime, ReportLevel reportLevel, string errorMessage)
         {
             consoleAppender?.Append(dateTime, reportLevel, errorMessage);
             fileAppender?.Append(dateTime, reportLevel, errorMessage);
+            
         }
     }
 }
