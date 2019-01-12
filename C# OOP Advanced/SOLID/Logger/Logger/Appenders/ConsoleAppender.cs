@@ -1,27 +1,34 @@
 ﻿namespace Logger.Appenders
 {
     using System;
-    using Contracts;
     using Layouts.Contracts;
     using Loggers.Enums;
 
-    public class ConsoleAppender : IAppender
+    public class ConsoleAppender : Appender
     {
-        private readonly ILayout layout;
-
-        public ConsoleAppender(ILayout layout)
+        public ConsoleAppender(ILayout layout) : base(layout)
         {
-            this.layout = layout;
+        }
+        
+        public override void Append(string dateTime, ReportLevel reportLevel, string message)
+        {
+            if (reportLevel >= this.ReportLevel)
+            {
+                Console.WriteLine(string.Format(layout.Format, dateTime, reportLevel, message));
+                MessagesAppended++;
+            }
         }
 
-        public ReportLevel ReportLevel { get; set; }
-
-        public void Append(string dateTime, ReportLevel reportLevel, string message)
+        public override string Status()
         {
-            if(reportLevel >= this.ReportLevel)
-            {
-            Console.WriteLine(string.Format(layout.Format, dateTime, reportLevel, message));
-            }
+            string appenderType = this.GetType().Name;
+
+            string result = $"Appender type: {appenderType}, " +
+                $"Layout type: {LayoutType.GetType().Name}, " +
+                $"Report level: {ReportLevel.ToString().ToUpper()}, " +
+                $"Messages appended: {MessagesAppended}";
+
+            return result;
         }
     }
 }
