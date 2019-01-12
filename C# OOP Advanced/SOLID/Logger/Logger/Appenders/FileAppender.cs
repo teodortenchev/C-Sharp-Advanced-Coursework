@@ -1,34 +1,46 @@
 ﻿namespace Logger.Appenders
 {
-    using Contracts;
     using Layouts.Contracts;
     using Loggers.Enums;
     using Loggers.Contracts;
     using System.IO;
 
-    public class FileAppender : IAppender
+    public class FileAppender : Appender
     {
         private const string Path = "log.txt";
 
-        private readonly ILayout layout;
         private readonly ILogFile logFile;
 
-        public FileAppender(ILayout layout, ILogFile logFile)
+        public FileAppender(ILayout layout, ILogFile logFile) : base(layout)
         {
-            this.layout = layout;
             this.logFile = logFile;
         }
 
-        public ReportLevel ReportLevel { get; set; }
-
-        public void Append(string dateTime, ReportLevel reportLevel, string message)
+        public override void Append(string dateTime, ReportLevel reportLevel, string message)
         {
-            string content = string.Format(layout.Format, dateTime, reportLevel, message)
+            if (reportLevel >= this.ReportLevel)
+            {
+                string content = string.Format(layout.Format, dateTime, reportLevel, message)
                                                         + System.Environment.NewLine;
+                File.AppendAllText(Path, content);
 
-            File.AppendAllText(Path, content);
+                logFile.Write(content);
 
-          
+                MessagesAppended++;
+            }
+        }
+
+        public override string Status()
+        {
+            string appenderType = this.GetType().Name;
+
+            string result = $"Appender type: {appenderType}, " +
+                $"Layout type: {LayoutType.GetType().Name}, " +
+                $"Report level: {ReportLevel.ToString().ToUpper()}, " +
+                $"Messages appended: {MessagesAppended}, " +
+                $"File size: {logFile.Size}";
+
+            return result;
         }
     }
 }
