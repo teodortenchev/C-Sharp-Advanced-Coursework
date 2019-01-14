@@ -60,13 +60,18 @@
 
         public T Max()
         {
+            if (this.Count == 0)
+            {
+                throw new InvalidOperationException("List has no elements.");
+
+            }
             T result = array[0];
 
-            for (int i = 0; i < Count - 1; i++)
+            for (int i = 1; i < Count; i++)
             {
-                if (array[i + 1].CompareTo(result) > 0)
+                if (array[i].CompareTo(result) > 0)
                 {
-                    result = array[i + 1];
+                    result = array[i];
                 }
             }
 
@@ -75,13 +80,18 @@
 
         public T Min()
         {
+            if (this.Count == 0)
+            {
+                throw new InvalidOperationException("List has no elements.");
+
+            }
             T result = array[0];
 
-            for (int i = 0; i < Count - 1; i++)
+            for (int i = 0; i < Count; i++)
             {
-                if (array[i + 1].CompareTo(result) < 0)
+                if (array[i].CompareTo(result) < 0)
                 {
-                    result = array[i + 1];
+                    result = array[i];
                 }
             }
 
@@ -90,9 +100,26 @@
 
         public T Remove(int index)
         {
+            if (index < 0 || index > Count - 1)
+            {
+                throw new InvalidOperationException("Index is not in range.");
+            }
+
             T temp = array[index];
 
             array[index] = default(T);
+
+            Count--;
+
+            for (int i = index; i < Count; i++)
+            {
+                array[i] = array[i + 1];
+            }
+
+            if(array.Length != Count)
+            {
+                array[Count] = default(T);
+            }
 
             return temp;
         }
@@ -122,7 +149,7 @@
 
         }
 
-       
+
 
     }
 }
