@@ -47,8 +47,6 @@ namespace P7CustomList
 
                 input = Console.ReadLine();
             }
-
-
         }
     }
 }
