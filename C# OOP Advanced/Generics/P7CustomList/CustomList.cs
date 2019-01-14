@@ -1,8 +1,10 @@
 ﻿namespace P7CustomList
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
 
-    public class CustomList<T> : ICustomList<T>
+    public class CustomList<T> : ICustomList<T>, IEnumerable<T>
         where T : IComparable<T>
     {
 
@@ -149,7 +151,17 @@
 
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+             foreach (var item in array)
+            {
+                yield return item;
+            }
+        }
 
-
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }
