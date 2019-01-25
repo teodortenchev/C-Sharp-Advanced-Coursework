@@ -19,11 +19,16 @@
         public IExecutable InterpretCommand(string[] data, string commandName)
         {
             Type commandType = Assembly.GetExecutingAssembly().GetTypes()
-                .FirstOrDefault(x => x.Name.StartsWith(commandName, StringComparison.CurrentCultureIgnoreCase));
+                .FirstOrDefault(x => x.Name.ToLower() == commandName + "command");
+
+            if (commandType == null)
+            {
+                throw new Exception("Invalid command!");
+            }
 
             var instance = Activator.CreateInstance(commandType, new object[] { data, Repository, UnitFactory });
 
-            var result = ((IExecutable)instance);
+            IExecutable result = (IExecutable)instance;
 
             return result;
         }
