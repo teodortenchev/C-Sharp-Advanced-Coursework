@@ -1,19 +1,17 @@
 ﻿namespace P03_BarraksWars.Core
 {
-    using System;
     using Contracts;
+    using System;
 
     class Engine : IRunnable
     {
-        private IRepository repository;
-        private IUnitFactory unitFactory;
+        private readonly ICommandInterpreter commandInterpreter;
 
-        public Engine(IRepository repository, IUnitFactory unitFactory)
+        public Engine(ICommandInterpreter commandInterpreter)
         {
-            this.repository = repository;
-            this.unitFactory = unitFactory;
+            this.commandInterpreter = commandInterpreter;
         }
-        
+
         public void Run()
         {
             while (true)
@@ -23,7 +21,9 @@
                     string input = Console.ReadLine();
                     string[] data = input.Split();
                     string commandName = data[0];
-                    string result = InterpredCommand(data, commandName);
+                    IExecutable command = commandInterpreter.InterpretCommand(data, commandName);
+                    string result = command.Execute();
+
                     Console.WriteLine(result);
                 }
                 catch (Exception e)
@@ -34,41 +34,20 @@
         }
 
         // TODO: refactor for Problem 4
-        private string InterpredCommand(string[] data, string commandName)
-        {
-            string result = string.Empty;
-            switch (commandName)
-            {
-                case "add":
-                    result = this.AddUnitCommand(data);
-                    break;
-                case "report":
-                    result = this.ReportCommand(data);
-                    break;
-                case "fight":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    throw new InvalidOperationException("Invalid command!");
-            }
-            return result;
-        }
+        //private string InterpredCommand(string[] data, string commandName)
+        //{
+        //    Type commandType = Assembly.GetExecutingAssembly().GetTypes()
+        //        .FirstOrDefault(x => x.Name.StartsWith(commandName, StringComparison.CurrentCultureIgnoreCase));
+
+        //    var instance = Activator.CreateInstance(commandType, new object[] { data, repository, unitFactory });
+
+        //    var result = ((IExecutable)instance).Execute();
+
+        //    return result;
+        //}
 
 
-        private string ReportCommand(string[] data)
-        {
-            string output = this.repository.Statistics;
-            return output;
-        }
 
 
-        private string AddUnitCommand(string[] data)
-        {
-            string unitType = data[1];
-            IUnit unitToAdd = this.unitFactory.CreateUnit(unitType);
-            this.repository.AddUnit(unitToAdd);
-            string output = unitType + " added!";
-            return output;
-        }
     }
 }
