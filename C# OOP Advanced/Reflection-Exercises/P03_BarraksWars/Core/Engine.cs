@@ -32,22 +32,5 @@
                 }
             }
         }
-
-        // TODO: refactor for Problem 4
-        //private string InterpredCommand(string[] data, string commandName)
-        //{
-        //    Type commandType = Assembly.GetExecutingAssembly().GetTypes()
-        //        .FirstOrDefault(x => x.Name.StartsWith(commandName, StringComparison.CurrentCultureIgnoreCase));
-
-        //    var instance = Activator.CreateInstance(commandType, new object[] { data, repository, unitFactory });
-
-        //    var result = ((IExecutable)instance).Execute();
-
-        //    return result;
-        //}
-
-
-
-
     }
 }
