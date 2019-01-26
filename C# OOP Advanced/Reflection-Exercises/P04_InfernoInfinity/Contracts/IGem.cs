@@ -5,5 +5,6 @@
         int StrengthIncrease { get; }
         int AgilityIncrease { get; }
         int VitalityIncrease { get; }
+        int StatsIncrease { get; }
     }
 }

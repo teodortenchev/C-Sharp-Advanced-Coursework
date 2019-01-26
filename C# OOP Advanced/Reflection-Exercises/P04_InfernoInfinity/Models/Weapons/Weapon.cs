@@ -24,8 +24,7 @@
             Name = name;
             SocketsCount = socketsCount;
             sockets = new IGem[SocketsCount];
-            MinDamage += DamageModifier;
-            MaxDamage += DamageModifier;
+            
         }
 
         public string Name
@@ -69,7 +68,7 @@
             private set { vitality = value; }
         }
 
-        //TODO: Check if this creates problems, it should work fine, ensuring nobody tampers with the sockets
+        //TODO: (i dont need this returned)
         public IList<IGem> Sockets => Array.AsReadOnly(sockets);
 
 
@@ -92,6 +91,28 @@
             {
                 sockets[socketIndex] = gem;
                 IncreaseStats(gem);
+                
+            }
+
+        }
+        /// <summary>
+        /// Recalculates the modifiers based on weapon rarity.
+        /// </summary>
+        private void CalculateBoostFromStats()
+        {
+            MinDamage += Strength * 2 + Agility * 1 + DamageModifier;
+            MaxDamage += Strength * 3 + Agility * 4 + DamageModifier;
+            
+        }
+
+
+        public void RemoveGem(int socketIndex, IGem gem)
+        {
+            if (ValidSocket(socketIndex) && Sockets[socketIndex] != null)
+            {
+                sockets[socketIndex] = null;
+                DecreaseStats(gem);
+                
             }
 
         }
@@ -101,16 +122,6 @@
             Strength += gem.StrengthIncrease;
             Agility += gem.AgilityIncrease;
             Vitality += gem.VitalityIncrease;
-        }
-
-        public void RemoveGem(int socketIndex, IGem gem)
-        {
-            if (ValidSocket(socketIndex) && Sockets[socketIndex] != null)
-            {
-                sockets[socketIndex] = null;
-                DecreaseStats(gem);
-            }
-
         }
 
         private void DecreaseStats(IGem gem)
@@ -123,6 +134,12 @@
         private bool ValidSocket(int socketIndex)
         {
             return socketIndex < 0 && socketIndex < sockets.Length;
+        }
+
+        public override string ToString()
+        {
+            CalculateBoostFromStats();
+            return $"{Name}: {MinDamage}-{MaxDamage}, +{Strength} Strength, +{Agility} Agility, +{Vitality} Agility";
         }
     }
 }
