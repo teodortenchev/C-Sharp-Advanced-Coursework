@@ -1,4 +1,4 @@
-﻿namespace P03_BarraksWars.Core.Commmand
+﻿namespace P03_BarraksWars.Core.Actions
 {
     using Contracts;
 

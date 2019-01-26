@@ -1,20 +1,21 @@
 ﻿namespace P03_BarraksWars.Core
 {
     using Contracts;
+    using P03_BarraksWars.Core.Actions;
     using System;
     using System.Linq;
     using System.Reflection;
 
     public class CommandInterpreter : ICommandInterpreter
     {
-        public CommandInterpreter(IRepository repository, IUnitFactory unitFactory)
+        private IServiceProvider serviceProvider;
+
+        public CommandInterpreter(IServiceProvider serviceProvider)
         {
-            Repository = repository;
-            UnitFactory = unitFactory;
+            this.serviceProvider = serviceProvider;
         }
 
-        public IRepository Repository { get; private set; }
-        public IUnitFactory UnitFactory { get; private set; }
+
 
         public IExecutable InterpretCommand(string[] data, string commandName)
         {
@@ -26,11 +27,20 @@
                 throw new Exception("Invalid command!");
             }
 
-            var instance = Activator.CreateInstance(commandType, new object[] { data, Repository, UnitFactory });
+            //Gets the fields which have custom attribute of Inject
+            FieldInfo[] fieldsToInject = commandType
+                  .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                  .Where(f => f.CustomAttributes.Any(ca => ca.AttributeType == typeof(InjectAttribute))).ToArray();
 
-            IExecutable result = (IExecutable)instance;
+            //Gets the fields types to inject from the service Provider.
+            object[] injectArgs = fieldsToInject.Select(f => this.serviceProvider.GetService(f.FieldType)).ToArray();
 
-            return result;
+            //arguments to satisfy all the constructors in all commands. (must find a better way)
+            object[] constrArgs = new object[] { data }.Concat(injectArgs).ToArray();
+
+            IExecutable instance = (IExecutable)Activator.CreateInstance(commandType, constrArgs);
+
+            return instance;
         }
     }
 }
