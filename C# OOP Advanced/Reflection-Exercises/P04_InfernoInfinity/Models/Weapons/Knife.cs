@@ -4,9 +4,11 @@
 
     public class Knife : Weapon
     {
+        private const int MinDMG = 3;
+        private const int MaxDMG = 4;
         private const int MaxGems = 2;
 
-        public Knife(IRarity rarity, string name) : base(rarity, name, socketsCount: MaxGems)
+        public Knife(IRarity rarity, string name) : base(rarity, name, MaxGems, MinDMG, MaxDMG)
         {
         }
 
