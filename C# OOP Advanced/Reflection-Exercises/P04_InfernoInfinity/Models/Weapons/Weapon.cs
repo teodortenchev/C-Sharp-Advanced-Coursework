@@ -13,18 +13,24 @@
         private int agility;
         private int vitality;
 
+        private int baseMinDmg;
+        private int baseMaxDmg;
+
         private IRarity rarity;
 
         private IGem[] sockets;
 
+        private bool statsAdjusted = false;
 
-        protected Weapon(IRarity rarity, string name, int socketsCount)
+        protected Weapon(IRarity rarity, string name, int socketsCount, int baseMinDmg, int baseMaxDmg)
         {
             Rarity = rarity;
             Name = name;
             SocketsCount = socketsCount;
             sockets = new IGem[SocketsCount];
-            
+            this.baseMinDmg = baseMinDmg;
+            this.baseMaxDmg = baseMaxDmg;
+
         }
 
         public string Name
@@ -91,7 +97,7 @@
             {
                 sockets[socketIndex] = gem;
                 IncreaseStats(gem);
-                
+
             }
 
         }
@@ -100,9 +106,9 @@
         /// </summary>
         private void CalculateBoostFromStats()
         {
-            MinDamage += Strength * 2 + Agility * 1 + DamageModifier;
-            MaxDamage += Strength * 3 + Agility * 4 + DamageModifier;
-            
+            MinDamage = baseMinDmg + (Strength * 2 + Agility * 1) * DamageModifier;
+            MaxDamage = baseMaxDmg + (Strength * 3 + Agility * 4) * DamageModifier;
+
         }
 
 
@@ -112,7 +118,7 @@
             {
                 sockets[socketIndex] = null;
                 DecreaseStats(gem);
-                
+
             }
 
         }
@@ -133,13 +139,18 @@
 
         private bool ValidSocket(int socketIndex)
         {
-            return socketIndex < 0 && socketIndex < sockets.Length;
+            return socketIndex >= 0 && socketIndex < sockets.Length;
         }
+
 
         public override string ToString()
         {
+
             CalculateBoostFromStats();
+            statsAdjusted = true;
+
             return $"{Name}: {MinDamage}-{MaxDamage}, +{Strength} Strength, +{Agility} Agility, +{Vitality} Agility";
         }
+
     }
 }
