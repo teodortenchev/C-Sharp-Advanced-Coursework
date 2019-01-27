@@ -15,6 +15,9 @@
         {
             object result = Enum.Parse(typeof(GemQuality), gemType);
             StatsIncrease = (int)result;
+            StrengthIncrease = strength;
+            AgilityIncrease = agility;
+            VitalityIncrease = vitality;
         }
         public int StrengthIncrease
         {
