@@ -6,7 +6,6 @@
 
     public abstract class Gem : IGem
     {
-        private string gemType;
         private int strength;
         private int agility;
         private int vitality;

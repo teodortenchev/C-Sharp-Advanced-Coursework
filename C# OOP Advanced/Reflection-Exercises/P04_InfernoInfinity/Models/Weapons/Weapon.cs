@@ -20,8 +20,6 @@
 
         private IGem[] sockets;
 
-        private bool statsAdjusted = false;
-
         protected Weapon(IRarity rarity, string name, int socketsCount, int baseMinDmg, int baseMaxDmg)
         {
             Rarity = rarity;
@@ -147,7 +145,6 @@
         {
 
             CalculateBoostFromStats();
-            statsAdjusted = true;
 
             return $"{Name}: {MinDamage}-{MaxDamage}, +{Strength} Strength, +{Agility} Agility, +{Vitality} Agility";
         }
