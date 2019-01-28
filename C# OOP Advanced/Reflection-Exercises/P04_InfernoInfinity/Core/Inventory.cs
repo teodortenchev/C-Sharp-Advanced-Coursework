@@ -4,10 +4,11 @@
     using System.Collections.Generic;
     using Contracts;
 
-    public class Inventory : IRepository
+    public class Inventory : IInventory
     {
         private Dictionary<string, IWeapon> weaponStorage;
 
+        public IReadOnlyDictionary<string, IWeapon> Weapons => weaponStorage;
 
         public Inventory()
         {
@@ -20,7 +21,7 @@
             weapon.AddGem(gemSlot, gem);
         }
 
-        public void CreateWeapon(IWeapon weapon)
+        public void AddWeapon(IWeapon weapon)
         {
             weaponStorage.Add(weapon.Name, weapon);
         }
