@@ -5,7 +5,7 @@
     using System.Reflection;
     using Contracts;
 
-    class GemFactory : IGemFactory
+    public class GemFactory : IGemFactory
     {
         public IGem CreateGem(string gemType, string gemQuality)
         {
