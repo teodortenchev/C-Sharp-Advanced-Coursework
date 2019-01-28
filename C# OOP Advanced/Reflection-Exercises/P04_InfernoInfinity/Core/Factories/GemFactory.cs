@@ -11,7 +11,7 @@
         {
             Type gem = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name == gemType);
 
-            IGem gemInstance = (IGem)Activator.CreateInstance(gem, new object[] { gemType, gemQuality });
+            IGem gemInstance = (IGem)Activator.CreateInstance(gem, new object[] { gemQuality });
 
             return gemInstance;
         }

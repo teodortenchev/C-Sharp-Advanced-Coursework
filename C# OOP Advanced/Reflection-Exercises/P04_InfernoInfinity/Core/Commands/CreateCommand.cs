@@ -22,12 +22,12 @@
 
         public override void Execute()
         {
-            string[] part1 = Data[0].Split();
+            string[] part1 = Data[1].Split();
 
             string rarityType = part1[0];
             string weaponType = part1[1];
 
-            string weaponName = Data[1];
+            string weaponName = Data[2];
 
             IRarity rarity = rarityFactory.CreateRarity(rarityType);
             IWeapon weapon = weaponFactory.CreateWeapon(rarity, weaponName, weaponType);

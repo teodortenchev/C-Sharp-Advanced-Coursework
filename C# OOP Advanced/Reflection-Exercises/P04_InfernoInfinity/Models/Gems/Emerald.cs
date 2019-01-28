@@ -6,8 +6,8 @@
         private const int agility = 4;
         private const int vitality = 9;
 
-        public Emerald(string gemType)
-            : base(gemType, strength, agility, vitality)
+        public Emerald(string quality)
+            : base(quality, strength, agility, vitality)
         {
         }
     }

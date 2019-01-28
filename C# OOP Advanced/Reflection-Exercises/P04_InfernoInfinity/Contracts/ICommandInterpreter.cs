@@ -2,6 +2,6 @@
 {
     public interface ICommandInterpreter
     {
-        
+        void Interpret(string[] data);
     }
 }
