@@ -2,6 +2,6 @@
 {
     public interface IWeaponFactory
     {
-        IWeapon CreateWeapon(IRarity rarity, string name);
+        IWeapon CreateWeapon(IRarity rarity, string name, string type);
     }
 }
