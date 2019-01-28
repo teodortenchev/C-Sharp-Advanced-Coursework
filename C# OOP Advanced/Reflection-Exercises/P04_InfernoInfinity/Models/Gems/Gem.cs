@@ -10,9 +10,9 @@
         private int agility;
         private int vitality;
 
-        protected Gem(string gemType, int strength, int agility, int vitality)
+        protected Gem(string quality, int strength, int agility, int vitality)
         {
-            object result = Enum.Parse(typeof(GemQuality), gemType);
+            object result = Enum.Parse(typeof(GemQuality), quality);
             StatsIncrease = (int)result;
             StrengthIncrease = strength;
             AgilityIncrease = agility;
