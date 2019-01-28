@@ -2,5 +2,6 @@
 {
     public interface IRarityFactory
     {
+        IRarity CreateRarity(string rarity);
     }
 }
