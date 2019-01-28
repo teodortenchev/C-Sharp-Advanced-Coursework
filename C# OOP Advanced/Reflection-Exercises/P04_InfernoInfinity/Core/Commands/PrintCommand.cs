@@ -15,7 +15,7 @@
         public override void Execute()
         {
             string weaponName = Data[0];
-            inventory.PrintWeapon("a");
+            inventory.PrintWeapon(weaponName);
         }
     }
 }
