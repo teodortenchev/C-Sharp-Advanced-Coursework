@@ -13,8 +13,8 @@
 
         public override void Execute()
         {
-            string weaponName = Data[0];
-            int gemSlot = int.Parse(Data[1]);
+            string weaponName = Data[1];
+            int gemSlot = int.Parse(Data[2]);
             IWeapon weapon = inventory.Weapons[weaponName];
             IGem gem = weapon.Sockets[gemSlot];
 
