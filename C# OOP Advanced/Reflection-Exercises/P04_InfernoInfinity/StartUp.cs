@@ -1,21 +1,37 @@
-﻿using P04_InfernoInfinity.Contracts;
-using P04_InfernoInfinity.Enums;
-using P04_InfernoInfinity.Models.Rarity;
-using P04_InfernoInfinity.Models.Weapons;
-using System;
-
-namespace P04_InfernoInfinity
+﻿namespace P04_InfernoInfinity
 {
-    class StartUp
+    using Contracts;
+    using Core;
+    using Core.Factories;
+    using Microsoft.Extensions.DependencyInjection;
+    using System;
+
+    public class StartUp
     {
         static void Main(string[] args)
         {
-            IWeapon weapon = new Axe(new Rare(), "Axe of Mordor");
-            //weapon.AddGem(1, new ());
+            IServiceProvider serviceProvider = ConfigureServices();
 
-            object result = Enum.Parse(typeof(GemQuality), "Chipped");
-            int goro = (int)result;
-            Console.WriteLine();
+            ICommandInterpreter commandInterpreter = new CommandInterpreter(serviceProvider);
+            IEngine engine = new Engine(commandInterpreter);
+
+            engine.Run();
+        }
+
+        private static IServiceProvider ConfigureServices()
+        {
+            IServiceCollection services = new ServiceCollection();
+
+            services.AddSingleton<IInventory, Inventory>();
+            services.AddTransient<IGemFactory, GemFactory>();
+            services.AddTransient<IWeaponFactory, WeaponFactory>();
+            services.AddTransient<IRarityFactory, RarityFactory>();
+
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+
+            return serviceProvider;
         }
     }
+
+    
 }
