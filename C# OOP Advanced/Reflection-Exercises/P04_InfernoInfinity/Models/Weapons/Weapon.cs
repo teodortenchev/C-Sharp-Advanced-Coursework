@@ -72,9 +72,7 @@
             private set { vitality = value; }
         }
 
-        //TODO: (i dont need this returned)
         public IList<IGem> Sockets => Array.AsReadOnly(sockets);
-
 
         public int DamageModifier => GetDamageMod();
 
@@ -93,9 +91,15 @@
         {
             if (ValidSocket(socketIndex))
             {
+                if (sockets[socketIndex] != null)
+                {
+                    IGem currentGem = sockets[socketIndex];
+
+                    RemoveGem(socketIndex, currentGem);
+                }
+
                 sockets[socketIndex] = gem;
                 IncreaseStats(gem);
-
             }
 
         }
@@ -104,11 +108,10 @@
         /// </summary>
         private void CalculateBoostFromStats()
         {
-            MinDamage = baseMinDmg + (Strength * 2 + Agility * 1) * DamageModifier;
-            MaxDamage = baseMaxDmg + (Strength * 3 + Agility * 4) * DamageModifier;
+            MinDamage = (baseMinDmg + (Strength * 2 + Agility * 1)) * DamageModifier;
+            MaxDamage = (baseMaxDmg + (Strength * 3 + Agility * 4)) * DamageModifier;
 
         }
-
 
         public void RemoveGem(int socketIndex, IGem gem)
         {
@@ -140,13 +143,12 @@
             return socketIndex >= 0 && socketIndex < sockets.Length;
         }
 
-
         public override string ToString()
         {
 
             CalculateBoostFromStats();
 
-            return $"{Name}: {MinDamage}-{MaxDamage}, +{Strength} Strength, +{Agility} Agility, +{Vitality} Agility";
+            return $"{Name}: {MinDamage}-{MaxDamage} Damage, +{Strength} Strength, +{Agility} Agility, +{Vitality} Vitality";
         }
 
     }
