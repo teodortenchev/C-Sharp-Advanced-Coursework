@@ -108,8 +108,8 @@
         /// </summary>
         private void CalculateBoostFromStats()
         {
-            MinDamage = (baseMinDmg + (Strength * 2 + Agility * 1)) * DamageModifier;
-            MaxDamage = (baseMaxDmg + (Strength * 3 + Agility * 4)) * DamageModifier;
+            MinDamage = baseMinDmg * DamageModifier + (Strength * 2 + Agility * 1);
+            MaxDamage = baseMaxDmg * DamageModifier + (Strength * 3 + Agility * 4);
 
         }
 
