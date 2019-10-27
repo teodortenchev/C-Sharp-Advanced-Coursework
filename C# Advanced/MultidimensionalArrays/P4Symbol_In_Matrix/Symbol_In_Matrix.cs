@@ -20,8 +20,6 @@ namespace P4Symbol_In_Matrix
             }
 
             char findChar = char.Parse(Console.ReadLine());
-            int rowIndex = -1;
-            int colIndex = -1;
 
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
